@@ -119,4 +119,4 @@ ggplot(df)+
     geom_line(aes(x =Tarih1, y = Değer))
 ```
 
-####Fikrin çıkış kaynağı ve veri çekme fonksiyonunu bulduğum site: <http://www.barissanli.com/calismalar/dersler/r/rders11.php> #kaynakta eski R ile çalışıldığı için verileri düzenlemesi farklıydı. Ders notlarım, stackoverflow ve adını sayamadığım birçok siteden araştırdım. Not: evds verileri için Hazır paket olduğunu sonradan öğrendim.
+####Fikrin çıkış kaynağı: <http://www.barissanli.com/calismalar/dersler/r/rders11.php> #kaynakta eski R ile çalışıldığı için verileri düzenlemesi farklıydı. Ders notlarım, stackoverflow ve adını sayamadığım birçok siteden araştırdım.
