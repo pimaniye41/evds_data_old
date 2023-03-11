@@ -36,11 +36,3 @@ evds_csv2 <- function(anahtar,
 }
 
 
-a <- evds_csv2(anahtar = anahtar, veriseti1 = "TP.DK.USD.A.YTL",
-               veriseti2 = "TP.DK.EUR.A.YTL",
-               baslangic_tarihi = "01-01-2015",
-              bitis_tarihi = "10-03-2023",frekans1 = "5")
-a
-ggplot(a, aes(x = Tarih, group = 1))+
-  geom_line(aes(y = TP_DK_EUR_A_YTL, color = "EUR"))+
-  geom_line(aes(y = TP_DK_USD_A_YTL, color = "USD"))
