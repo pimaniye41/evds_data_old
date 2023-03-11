@@ -1,6 +1,6 @@
 evds_csv <- function(anahtar, veriseti, baslangic_tarihi, bitis_tarihi, islem = "avg", formul = "0", frekans = "1") {
   adres <- "https://evds2.tcmb.gov.tr/service/evds/"
-  seri <- paste("series=",istenilen_veri, sep="")
+  seri <- paste("series=",veriseti, sep="")
   tarihler <- paste("&startDate=",baslangic_tarihi,"&endDate=",bitis_tarihi, sep="")
   tamamlayici <- paste("&type=csv&key=",anahtar,sep="")
   gozlem <- paste("&aggregationTypes=", islem, sep = "")
