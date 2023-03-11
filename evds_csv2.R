@@ -19,9 +19,9 @@ evds_csv2 <- function(anahtar,
   frek1 <- paste("&frequency=", frekans1, sep = "")
   
   seri2 <- paste("series=",veriseti2, sep="")
-  gozlem2 <- paste("&aggregationTypes=", islem1, sep = "")
-  formula2 <- paste("&formulas=", formul1, sep = "")
-  frek2 <- paste("&frequency=", frekans1, sep = "")
+  gozlem2 <- paste("&aggregationTypes=", islem2, sep = "")
+  formula2 <- paste("&formulas=", formul2, sep = "")
+  frek2 <- paste("&frequency=", frekans2, sep = "")
   
   veriadresi1<-paste(adres, seri1, tarihler, tamamlayici, gozlem1, formula1,frek1, sep="")
   csvveri1 <- getURL(veriadresi1, .opts = list(ssl.verifypeer = FALSE))
@@ -35,7 +35,7 @@ evds_csv2 <- function(anahtar,
   return(veridfbind)
 }
 
-anahtar <- "********"
+
 a <- evds_csv2(anahtar = anahtar, veriseti1 = "TP.DK.USD.A.YTL",
                veriseti2 = "TP.DK.EUR.A.YTL",
                baslangic_tarihi = "01-01-2015",
