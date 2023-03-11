@@ -3,7 +3,7 @@ library(stringr)
 library(RCurl)
 library(XML)
 
-evds_csv2 <- function(anahtar, 
+evds_csv3 <- function(anahtar, 
                       veriseti1, 
                       veriseti2, 
                       baslangic_tarihi, bitis_tarihi, 
