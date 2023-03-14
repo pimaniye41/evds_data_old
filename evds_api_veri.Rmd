@@ -26,9 +26,6 @@ anahtar <- "***********"
 ```
 
 
-```{r,echo=FALSE}
-anahtar <- "GvQZCLvAbW"
-```
 
 
 # fonksiyon ile evds xml verisi otomasyonu
