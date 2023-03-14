@@ -24,14 +24,22 @@ evds_csv_demo <- function(anahtar, veriseti, baslangic_tarihi, bitis_tarihi, isl
                      names_to = "seri",
                      values_to = "deger")
   }
+  
   veridf$deger <- as.numeric(veridf$deger)
-  veridf$Tarih <- as.Date(veridf$Tarih, format = "%d-%m-%Y")
-  veridf <- arrange(veridf, Tarih)
+  
+  veridf$Tarih <- if(nchar(veridf$Tarih[1])<10){
+    as.character(veridf$Tarih)}
+  else{
+    as.Date(veridf$Tarih,format = "%d-%m-%Y")
+    }
+  veridf <- if(is.character(veridf$Tarih)){
+    veridf} 
+  else{arrange(veridf, Tarih)
+  }
   return(veridf)
 }
 
-evds_csv_demo(anahtar = anahtar, veriseti = "TP.DK.EUR.A.YTL",
-              baslangic_tarihi = "01-01-2023",
+evds_csv_demo(anahtar = anahtar,veriseti = "TP.KTF10",baslangic_tarihi = "01-01-2021",
               bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"))
 
 ###### ##### ##### ###### ##### 
@@ -66,7 +74,7 @@ evds_csv2_demo <- function(anahtar,
   
   veridfbind <- full_join(veridf1,veridf2)
   veridfbind <- veridfbind %>% select(!UNIXTIME)
-  veridfbind$Tarih <- as.Date(veridfbind$Tarih, format = "%d-%m-%Y")
+  
   veridfbind <- if("YEARWEEK" %in% colnames(veridfbind)){
     veridfbind <- pivot_longer(data = veridfbind,
                                cols = c(3:ncol(veridfbind)),
@@ -78,12 +86,24 @@ evds_csv2_demo <- function(anahtar,
                      values_to = "deger")
   }
   veridfbind$deger <- as.numeric(veridfbind$deger)
-  veridfbind <- arrange(veridfbind, Tarih)
+  
+  veridfbind$Tarih <- if(nchar(veridfbind$Tarih[1])<10){
+    as.character(veridfbind$Tarih)}
+  else{
+    as.Date(veridfbind$Tarih,format = "%d-%m-%Y")
+  }
+  veridfbind <- if(is.character(veridfbind$Tarih)){
+    veridfbind} 
+  else{arrange(veridfbind, Tarih)
+  }
   return(veridfbind)
 }
 
+
+
 evds_csv2_demo(anahtar = anahtar,veriseti1 = "TP.DK.USD.A",veriseti2 = "TP.DK.EUR.A",
-               baslangic_tarihi = "01-01-2023",bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"))
+               baslangic_tarihi = "01-01-2023",bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"),
+               frekans1 = "2",frekans2 = "2")
 
 #### #### --------------------
 
@@ -92,9 +112,9 @@ evds_csv3_demo <- function(anahtar,
                            veriseti2, 
                            veriseti3,
                            baslangic_tarihi, bitis_tarihi, 
-                           islem1 = "avg", formul1 = "0", frekans1 = "1",
-                           islem2 = "avg", formul2 = "0", frekans2 = "1",
-                           islem3 = "avg", formul3 = "0", frekans3 = "1") {
+                           islem1 = "avg", formul1 = "0", frekans1 = "2",
+                           islem2 = "avg", formul2 = "0", frekans2 = "2",
+                           islem3 = "avg", formul3 = "0", frekans3 = "2") {
   
   adres <- "https://evds2.tcmb.gov.tr/service/evds/"
   tarihler <- paste("&startDate=",baslangic_tarihi,"&endDate=",bitis_tarihi, sep="")
@@ -130,7 +150,7 @@ evds_csv3_demo <- function(anahtar,
   veridfbind_1 = full_join(veridf1,veridf2,join_by(Tarih, UNIXTIME))
   veridfbind = full_join(veridfbind_1,veridf3,join_by(Tarih, UNIXTIME))
   veridfbind <- veridfbind %>% select(!UNIXTIME)
-  veridfbind$Tarih <- as.Date(veridfbind$Tarih, format = "%d-%m-%Y")
+  
   veridfbind <- if("YEARWEEK" %in% colnames(veridfbind)){
     veridfbind <- pivot_longer(data = veridfbind,
                                cols = c(3:ncol(veridfbind)),
@@ -142,13 +162,23 @@ evds_csv3_demo <- function(anahtar,
                      values_to = "deger")
   }
   veridfbind$deger <- as.numeric(veridfbind$deger)
-  veridfbind <- arrange(veridfbind, Tarih)
+  
+  veridfbind$Tarih <- if(nchar(veridfbind$Tarih[1])<10){
+    as.character(veridfbind$Tarih)}
+  else{
+    as.Date(veridfbind$Tarih,format = "%d-%m-%Y")
+  }
+  veridfbind <- if(is.character(veridfbind$Tarih)){
+    veridfbind} 
+  else{arrange(veridfbind, Tarih)
+  }
   return(veridfbind)
 }
 
 evds_csv3_demo(anahtar = anahtar,veriseti1 = "TP.DK.USD.A.YTL",
                veriseti2 = "TP.DK.EUR.A.YTL",veriseti3 = "TP.DK.GBP.A.YTL",
-               baslangic_tarihi = "01-01-2023",bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"))
+               baslangic_tarihi = "01-01-2021",bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"),
+               frekans1 = "5",frekans2 = "5",frekans3 = "5")
 
 
 #----------------------------------------#
@@ -159,10 +189,10 @@ evds_csv4_demo <- function(anahtar,
                            veriseti3,
                            veriseti4,
                            baslangic_tarihi, bitis_tarihi, 
-                           islem1 = "avg", formul1 = "0", frekans1 = "1",
-                           islem2 = "avg", formul2 = "0", frekans2 = "1",
-                           islem3 = "avg", formul3 = "0", frekans3 = "1",
-                           islem4 = "avg", formul4 = "0", frekans4 = "1") {
+                           islem1 = "avg", formul1 = "0", frekans1 = "2",
+                           islem2 = "avg", formul2 = "0", frekans2 = "2",
+                           islem3 = "avg", formul3 = "0", frekans3 = "2",
+                           islem4 = "avg", formul4 = "0", frekans4 = "2") {
   
   adres <- "https://evds2.tcmb.gov.tr/service/evds/"
   tarihler <- paste("&startDate=",baslangic_tarihi,"&endDate=",bitis_tarihi, sep="")
@@ -209,7 +239,7 @@ evds_csv4_demo <- function(anahtar,
   veridfbind = full_join(veridfbind_1,veridf4,join_by(Tarih, UNIXTIME))
   
   veridfbind <- veridfbind %>% select(!UNIXTIME)
-  veridfbind$Tarih <- as.Date(veridfbind$Tarih, format = "%d-%m-%Y")
+  
   
   veridfbind <- if("YEARWEEK" %in% colnames(veridfbind)){
     veridfbind <- pivot_longer(data = veridfbind,
@@ -222,7 +252,17 @@ evds_csv4_demo <- function(anahtar,
                      values_to = "deger")
   }
   veridfbind$deger <- as.numeric(veridfbind$deger)
-  veridfbind <- arrange(veridfbind, Tarih)
+  
+  veridfbind$Tarih <- if(nchar(veridfbind$Tarih[1])<10){
+    as.character(veridfbind$Tarih)}
+  else{
+    as.Date(veridfbind$Tarih,format = "%d-%m-%Y")
+  }
+  veridfbind <- if(is.character(veridfbind$Tarih)){
+    veridfbind} 
+  else{arrange(veridfbind, Tarih)
+  }
+  
   return(veridfbind)
 }
 evds_csv4_demo(anahtar = anahtar,
