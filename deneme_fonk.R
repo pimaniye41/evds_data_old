@@ -27,7 +27,7 @@ evds_csv_demo <- function(anahtar, veriseti, baslangic_tarihi, bitis_tarihi, isl
   return(veridf)
 }
 
-evds_csv(anahtar = "GvQZCLvAbW",veriseti = "TP.DK.EUR.A.YTL",
+evds_csv(anahtar = anahatar,veriseti = "TP.DK.EUR.A.YTL",
          baslangic_tarihi = "01-01-2023",
          bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"),frekans = "3")
 
