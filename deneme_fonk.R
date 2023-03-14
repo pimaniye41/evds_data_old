@@ -16,9 +16,9 @@ evds_csv_demo <- function(anahtar, veriseti, baslangic_tarihi, bitis_tarihi, isl
   
   veridf <- if("YEARWEEK" %in% colnames(veridf)){
     veridf <- pivot_longer(data = veridf,
-                         cols = c(3:ncol(veridf)),
-                         names_to = "seri",
-                         values_to = "deger")}
+                           cols = c(3:ncol(veridf)),
+                           names_to = "seri",
+                           values_to = "deger")}
   else {pivot_longer(data = veridf,
                      cols = c(2:ncol(veridf)),
                      names_to = "seri",
@@ -31,17 +31,17 @@ evds_csv_demo <- function(anahtar, veriseti, baslangic_tarihi, bitis_tarihi, isl
 }
 
 evds_csv_demo(anahtar = anahtar, veriseti = "TP.DK.EUR.A.YTL",
-         baslangic_tarihi = "01-01-2023",
-         bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"))
+              baslangic_tarihi = "01-01-2023",
+              bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"))
 
 ###### ##### ##### ###### ##### 
 
 evds_csv2_demo <- function(anahtar, 
-                      veriseti1, 
-                      veriseti2, 
-                      baslangic_tarihi, bitis_tarihi, 
-                      islem1 = "avg", formul1 = "0", frekans1 = "1",
-                      islem2 = "avg", formul2 = "0", frekans2 = "1") {
+                           veriseti1, 
+                           veriseti2, 
+                           baslangic_tarihi, bitis_tarihi, 
+                           islem1 = "avg", formul1 = "0", frekans1 = "1",
+                           islem2 = "avg", formul2 = "0", frekans2 = "1") {
   adres <- "https://evds2.tcmb.gov.tr/service/evds/"
   tarihler <- paste("&startDate=",baslangic_tarihi,"&endDate=",bitis_tarihi, sep="")
   tamamlayici <- paste("&type=csv&key=",anahtar,sep="")
@@ -83,18 +83,18 @@ evds_csv2_demo <- function(anahtar,
 }
 
 evds_csv2_demo(anahtar = anahtar,veriseti1 = "TP.DK.USD.A",veriseti2 = "TP.DK.EUR.A",
-          baslangic_tarihi = "01-01-2023",bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"))
+               baslangic_tarihi = "01-01-2023",bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"))
 
 #### #### --------------------
 
 evds_csv3_demo <- function(anahtar, 
-                      veriseti1, 
-                      veriseti2, 
-                      veriseti3,
-                      baslangic_tarihi, bitis_tarihi, 
-                      islem1 = "avg", formul1 = "0", frekans1 = "1",
-                      islem2 = "avg", formul2 = "0", frekans2 = "1",
-                      islem3 = "avg", formul3 = "0", frekans3 = "1") {
+                           veriseti1, 
+                           veriseti2, 
+                           veriseti3,
+                           baslangic_tarihi, bitis_tarihi, 
+                           islem1 = "avg", formul1 = "0", frekans1 = "1",
+                           islem2 = "avg", formul2 = "0", frekans2 = "1",
+                           islem3 = "avg", formul3 = "0", frekans3 = "1") {
   
   adres <- "https://evds2.tcmb.gov.tr/service/evds/"
   tarihler <- paste("&startDate=",baslangic_tarihi,"&endDate=",bitis_tarihi, sep="")
