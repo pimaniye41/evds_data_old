@@ -1,3 +1,8 @@
+library(tidyverse)
+library(stringr)
+library(RCurl)
+library(XML)
+
 evds_csv <- function(anahtar, veriseti, baslangic_tarihi, bitis_tarihi, islem = "avg", formul = "0", frekans = "1") {
   adres <- "https://evds2.tcmb.gov.tr/service/evds/"
   seri <- paste("series=",istenilen_veri, sep="")
@@ -11,3 +16,8 @@ evds_csv <- function(anahtar, veriseti, baslangic_tarihi, bitis_tarihi, islem = 
   veridf = read_csv(csvveri)
   return(veridf)
 }
+
+anahtar <- "GvQZCLvAbW"
+a <- evds_csv(anahtar = anahtar, veriseti = "TP.DK.USD.S.YTL",baslangic_tarihi = "01-01-2015",
+         bitis_tarihi = format(Sys.Date(),"%d-%m-%Y"),frekans = "2")
+a
