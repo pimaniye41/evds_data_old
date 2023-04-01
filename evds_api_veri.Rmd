@@ -26,9 +26,12 @@ anahtar <- "***********"
 ```
 
 
+<<<<<<< HEAD
 ```{r,echo=FALSE}
 anahtar <- "GvQZCLvAbW"
 ```
+=======
+>>>>>>> 05395dacc284f42deabcc1feba21dac2e29958b8
 
 
 # fonksiyon ile evds xml verisi otomasyonu
